@@ -4,7 +4,6 @@ require "bundler/setup"
 require "termtrackr"
 require "termtrackr/client"
 
-require 'faye/websocket'
 require 'eventmachine'
 
 EM.run {
