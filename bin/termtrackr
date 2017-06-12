@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "termtrackr"
+require "termtrackr/client"
+
+require 'faye/websocket'
+require 'eventmachine'
+
+EM.run {
+  ws = Termtrackr::Client.new.client
+
+  ws.on :open do |event|
+    p [:open]
+    ws.send('duraki/termtrackr')
+  end
+
+  ws.on :message do |event|
+    p [:message, event.data]
+  end
+
+  ws.on :close do |event|
+    p [:close, event.code, event.reason]
+    ws = nil
+  end
+}
+
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require "pry"
+# Pry.start
+
+require "irb"
+IRB.start(__FILE__)
