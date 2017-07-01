@@ -7,6 +7,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
+brew install imagemagick
 gem 'termtrackr'
 ```
 
